@@ -8,7 +8,6 @@ function WelcomeScreen() {
 
   const authCtx = useContext(AuthContext);
   const token = authCtx.token;
-
   useEffect(() => {
     axios
       .get(
@@ -17,8 +16,11 @@ function WelcomeScreen() {
       )
       .then((response) => {
         setFetchedMessage(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
       });
-  }, []);
+  }, [token]);
 
   return (
     <View style={styles.rootContainer}>
